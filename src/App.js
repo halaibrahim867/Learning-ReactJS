@@ -1,8 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Person from "./Person";
-import MyComponent from "./MyComponent";
-
+import MyButton from "./MyButton";
+import MyInput from "./MyInput";
 function App() {
   return (
     <div className="App">
@@ -13,15 +12,7 @@ function App() {
           <code>src/App.js</code> and save to refresh!!.
         </p>
         <h1> Hello World</h1>
-        <Person name="John Doe" email="john.doe@example.com">
-          <h1>Hello World</h1>
-        </Person>
-        <Person name="Hala" email="hala@example.com">
-          <div>
-            <h2 style={{ color: "blue" }}>Hello Hala</h2>
-          </div>
-        </Person>
-        <MyComponent />
+
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -30,6 +21,8 @@ function App() {
         >
           Learn React
         </a>
+        <MyButton />
+        <MyInput />
       </header>
     </div>
   );

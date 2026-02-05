@@ -51,3 +51,7 @@ select {
 hr {
   width: 100%;
 }
+
+.disabled {
+  background-color: grey !important;
+}

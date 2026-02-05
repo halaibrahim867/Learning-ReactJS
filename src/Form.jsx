@@ -10,35 +10,38 @@ export default function MyForm() {
     salary: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState(null);
   const [submitted, setSubmitted] = useState(false);
-  function isAgeValid() {
-    const age = Number(formData.age);
-    return age >= 18 && age <= 60;
-  }
 
-  function isPhoneValid() {
-    return formData.phone.length === 10;
-  }
-  function CheckAllData() {
+  function btnIsDisabled() {
     if (
-      formData.name &&
-      formData.phone &&
-      formData.age &&
-      formData.salary &&
-      formData.isEmployee
+      formData.name === "" ||
+      formData.phone === "" ||
+      formData.age === "" ||
+      formData.salary === "" ||
+      !formData.isEmployee
     ) {
       return true;
     }
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isAgeValid() && isPhoneValid()) {
-      setSubmitted(true);
+    const { phone, age } = formData;
+    if (age < 18 || age > 65) {
+      setErrorMessage("Age must be between 18 and 65");
+    } else if (phone.length < 10 || phone.length > 12) {
+      setErrorMessage("Phone number must be between 10 and 12 digits long");
     }
+    setSubmitted(true);
   };
 
+  function handleDivClick() {
+    if (submitted) {
+      setSubmitted(false);
+    }
+  }
   return (
-    <div className="form-container">
+    <div onClick={handleDivClick} className="form-container">
       <form
         id="loan-form"
         onSubmit={handleSubmit}
@@ -51,8 +54,9 @@ export default function MyForm() {
         <label>Name:</label>
         <input
           type="text"
-          value={formData.name}
+          value={formData.name} //for read the value of name from formData and assign it to input field
           onChange={(e) => {
+            //for update the value of name in formData when user change it in input field
             setFormData({ ...formData, name: e.target.value });
           }}
         />
@@ -85,15 +89,23 @@ export default function MyForm() {
           value={formData.salary}
           onChange={(e) => setFormData({ ...formData, salary: e.target.value })}
         >
+          <option value="">Select Salary Range</option>
           <option value="below-50k">less than 500$</option>
           <option value="500$-2000$">between 500$ and 2000$</option>
           <option value="above-2000$">above 2000$</option>
         </select>
-        <button id="submit-btn" type="submit" disabled={!CheckAllData()}>
+        <button
+          className={btnIsDisabled() ? "disabled" : ""}
+          id="submit-btn"
+          type="submit"
+          onClick={handleSubmit}
+          disabled={btnIsDisabled()}
+        >
           Submit
         </button>
       </form>
-      <Alert message="Form submitted successfully!" />
+
+      <Alert isVisible={submitted} errorMessage={errorMessage} />
     </div>
   );
 }

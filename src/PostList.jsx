@@ -7,7 +7,7 @@ export default function PostList() {
 
   let postList = posts.map((post) => {
     return (
-      <Link key={post.id} to={`/postDetails/${post.id}`}>
+      <Link key={post.id} to={`/posts/${post.id}`}>
         <div style={{ padding: "30px", marginTop: "10px" }}>
           <h1>{post.title}</h1>
         </div>

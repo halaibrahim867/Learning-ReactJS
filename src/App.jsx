@@ -7,8 +7,9 @@ import Hello from "./Hello";
 import Home from "./Home";
 import PostList from "./PostList";
 import PostDetails from "./PostDetails";
-import { postsContext } from "./contexts/postsContext";
 import NotFound from "./NotFound";
+import PostLayout from "./PostLayout";
+import { postsContext } from "./contexts/postsContext";
 function App() {
   const [count, setCount] = useState(0);
   let postsData = [
@@ -50,9 +51,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
 
-          <Route path="/posts" element={<PostList />} />
+          <Route path="/posts" element={<PostLayout />}>
+            {/* if the name of path same as prefix replace path with index and equal true same to put index only */}
+            <Route index element={<PostList />} />
 
-          <Route path="/postDetails/:postId" element={<PostDetails />} />
+            <Route path=":postId" element={<PostDetails />} />
+          </Route>
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -6,13 +6,21 @@ export default function PostDetails() {
   const { postId } = useParams();
 
   const post = posts.find((p) => {
-    return (p.id = postId);
+    return p.id == postId;
   });
-  return (
-    <>
-      <h2>Post Details Page</h2>
-      <h1>{post.title}</h1>
-      <p>{post.body}</p>
-    </>
-  );
+  if (post) {
+    return (
+      <>
+        <h2>Post Details Page</h2>
+        <h1>{post.title}</h1>
+        <p>{post.body}</p>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <h1>The post with id: {postId} is not exist</h1>
+      </>
+    );
+  }
 }

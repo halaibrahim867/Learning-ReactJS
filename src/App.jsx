@@ -8,22 +8,23 @@ import Home from "./Home";
 import PostList from "./PostList";
 import PostDetails from "./PostDetails";
 import { postsContext } from "./contexts/postsContext";
+import NotFound from "./NotFound";
 function App() {
   const [count, setCount] = useState(0);
   let postsData = [
     {
       id: 1,
-      title: "Post Title",
+      title: "Post Title 1",
       body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam corporis aliquam quas delectus excepturi aut iusto modi error quos fugit autem itaque cum quisquam, facere eligendi porro quis velit culpa.",
     },
     {
       id: 2,
-      title: "Post Title",
+      title: "Post Title 2",
       body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam corporis aliquam quas delectus excepturi aut iusto modi error quos fugit autem itaque cum quisquam, facere eligendi porro quis velit culpa.",
     },
     {
       id: 3,
-      title: "Post Title",
+      title: "Post Title 3",
       body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam corporis aliquam quas delectus excepturi aut iusto modi error quos fugit autem itaque cum quisquam, facere eligendi porro quis velit culpa.",
     },
   ];
@@ -52,6 +53,8 @@ function App() {
           <Route path="/posts" element={<PostList />} />
 
           <Route path="/postDetails/:postId" element={<PostDetails />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </postsContext.Provider>
     </>

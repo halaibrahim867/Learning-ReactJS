@@ -4,6 +4,7 @@ import { postsContext } from "./contexts/postsContext";
 import { useContext } from "react";
 export default function PostList() {
   const posts = useContext(postsContext);
+
   let postList = posts.map((post) => {
     return (
       <Link key={post.id} to={`/postDetails/${post.id}`}>
